@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileDivider.App", "FileDivider.App\FileDivider.App.csproj", "{5E3B4C4D-E2D4-48DC-84BA-C0B0D36F1CE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileDivider.Generator", "FileDivider.Generator\FileDivider.Generator.csproj", "{3741C2C8-9E4C-431A-8323-D404737EA948}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E3B4C4D-E2D4-48DC-84BA-C0B0D36F1CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3B4C4D-E2D4-48DC-84BA-C0B0D36F1CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3B4C4D-E2D4-48DC-84BA-C0B0D36F1CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3B4C4D-E2D4-48DC-84BA-C0B0D36F1CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3741C2C8-9E4C-431A-8323-D404737EA948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3741C2C8-9E4C-431A-8323-D404737EA948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3741C2C8-9E4C-431A-8323-D404737EA948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3741C2C8-9E4C-431A-8323-D404737EA948}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76B86A99-747D-4876-9D73-8D6E0894C5D5}
+	EndGlobalSection
+EndGlobal
