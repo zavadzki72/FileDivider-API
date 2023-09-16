@@ -1,4 +1,5 @@
 using FileDivider.Api.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IO.Compression;
 
@@ -13,6 +14,7 @@ namespace FileDivider.Api.Controllers
         }
 
         [HttpPost("/divide")]
+        [AllowAnonymous]
         public async Task<IActionResult> DivideFile(IFormFile formFile, int numberLineToDivide)
         {
             if(numberLineToDivide < 2)
