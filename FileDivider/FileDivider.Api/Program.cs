@@ -19,21 +19,27 @@ builder.Services.AddCors(x => {
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if(app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-else
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+if(app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
+    app.Run();
+}
+else
+{
+    var port = Environment.GetEnvironmentVariable("PORT");
+    var url = string.Concat("http://0.0.0.0:", port);
+
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
+    app.Run(url);
+}
+
