@@ -7,10 +7,12 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["FileDivider.Api/FileDivider.Api.csproj", "FileDivider.Api/"]
+COPY ["FileDivider.Api.csproj", "FileDivider.Api/"]
 RUN dotnet restore "FileDivider.Api/FileDivider.Api.csproj"
-COPY . .
+
 WORKDIR "/src/FileDivider.Api"
+COPY . .
+
 RUN dotnet build "FileDivider.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
