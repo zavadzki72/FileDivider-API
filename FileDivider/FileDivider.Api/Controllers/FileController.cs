@@ -14,7 +14,7 @@ namespace FileDivider.Api.Controllers
         }
 
         [HttpPost("/divide")]
-        [AllowAnonymous]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> DivideFile(IFormFile formFile, int numberLineToDivide)
         {
             if(numberLineToDivide < 2)
