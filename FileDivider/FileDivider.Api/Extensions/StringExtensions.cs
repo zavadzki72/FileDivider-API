@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Globalization;
-using System.Numerics;
+﻿using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-using static UglyToad.PdfPig.Core.PdfSubpath;
 
 namespace FileDivider.Api.Extensions
 {
