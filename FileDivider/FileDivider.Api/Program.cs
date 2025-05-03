@@ -3,12 +3,18 @@ using Microsoft.AspNetCore.Http.Features;
 using FileDivider.Api.Data;
 using FileDivider.Api.Middlewares;
 using FileDivider.Api.Services;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+var mongoConnectionString = Environment.GetEnvironmentVariable("MongoDbConnectionString");
+builder.Services.Configure<MongoDbSettings>(options =>
+{
+    options.ConnectionString = mongoConnectionString!;
+    options.DatabaseName = builder.Configuration.GetSection("MongoDbSettings:DatabaseName").Value!;
+});
 
 builder.Services.AddSingleton<MongoContext>();
 builder.Services.AddScoped<TemplateService>();
