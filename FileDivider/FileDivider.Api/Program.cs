@@ -10,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 var mongoConnectionString = Environment.GetEnvironmentVariable("MongoDbConnectionString");
+
+if (string.IsNullOrWhiteSpace(mongoConnectionString))
+{
+    mongoConnectionString = builder.Configuration["MongoDbSettings:ConnectionString"];
+}
+
 builder.Services.Configure<MongoDbSettings>(options =>
 {
     options.ConnectionString = mongoConnectionString!;

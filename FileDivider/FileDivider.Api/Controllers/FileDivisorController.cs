@@ -15,13 +15,21 @@ namespace FileDivider.Api.Controllers
             _service = service;
         }
 
-        [HttpPost]
+        [HttpPost("from-text")]
         public async Task<IActionResult> Post(FileDivisorRequest request)
         {
             var response = await _service.DivideFile(request);
             return Ok(new { 
                 Data = response
             });
+        }
+
+        [HttpPost("from-file")]
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> DivideFromFile(IFormFile formFile, Guid templateId, string fileName)
+        {
+            var zipBytes = await _service.DivideFromFile(fileName, templateId, formFile);
+            return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now.ToString("dd-MM-yyyy:HH:mm:ss")}.zip");
         }
     }
 }
