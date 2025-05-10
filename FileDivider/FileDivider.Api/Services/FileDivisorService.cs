@@ -66,7 +66,7 @@ namespace FileDivider.Api.Services
                 }
 
                 string baseName = ReplacePlaceholders(fileName, extractedValues);
-                string cleanName = SanitizeFileName($"{baseName}_Bloco_{i + 1}");
+                string cleanName = SanitizeFileName($"{baseName}_{i + 1}");
                 outputFiles.Add((cleanName, blockText));
             }
 
@@ -206,7 +206,7 @@ namespace FileDivider.Api.Services
                 }
 
                 string baseName = ReplacePlaceholders(fileName, extractedValues);
-                string cleanName = SanitizeFileName($"{baseName}_Bloco_{i + 1}");
+                string cleanName = SanitizeFileName($"{baseName}_{i + 1}");
 
                 var newDoc = new PdfSharpDocument();
                 for (int j = start; j <= end; j++)
