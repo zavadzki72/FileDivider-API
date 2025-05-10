@@ -9,7 +9,7 @@ namespace FileDivider.Api.Controllers
     {
         private readonly FileDivisorService _service = service;
 
-        [HttpPost("/pdf")]
+        [HttpPost("pdf")]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> DividePdf(IFormFile formFile, Guid templateId, string fileName)
         {
@@ -17,7 +17,7 @@ namespace FileDivider.Api.Controllers
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
         }
 
-        [HttpPost("/pdf/without-template")]
+        [HttpPost("pdf/without-template")]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> DividePdfWithoutTemplate(IFormFile formFile, string fileName, Dictionary<string, string> extractorHelper)
         {
@@ -25,7 +25,7 @@ namespace FileDivider.Api.Controllers
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
         }
 
-        [HttpPost("/txt/without-template")]
+        [HttpPost("txt/without-template")]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> DivideTxtWithoutTemplate(IFormFile formFile, string fileName, Dictionary<string, string> extractorHelper)
         {
@@ -33,7 +33,7 @@ namespace FileDivider.Api.Controllers
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
         }
 
-        [HttpPost("/txt/by-line")]
+        [HttpPost("txt/by-line")]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> DivideTxtByLine(IFormFile formFile, int line)
         {
