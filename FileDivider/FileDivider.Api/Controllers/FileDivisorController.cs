@@ -9,19 +9,35 @@ namespace FileDivider.Api.Controllers
     {
         private readonly FileDivisorService _service = service;
 
-        [HttpPost("from-file")]
+        [HttpPost("/pdf")]
         [DisableRequestSizeLimit]
-        public async Task<IActionResult> DivideFromFile(IFormFile formFile, Guid templateId, string fileName)
+        public async Task<IActionResult> DividePdf(IFormFile formFile, Guid templateId, string fileName)
         {
-            var zipBytes = await _service.DivideFromFile(fileName, templateId, formFile);
+            var zipBytes = await _service.DividePdf(fileName, templateId, formFile);
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
         }
 
-        [HttpPost("from-file-without-template")]
+        [HttpPost("/pdf/without-template")]
         [DisableRequestSizeLimit]
-        public async Task<IActionResult> DivideFromFileWithoutTemplate(IFormFile formFile, string fileName, Dictionary<string, string> extractorHelper)
+        public async Task<IActionResult> DividePdfWithoutTemplate(IFormFile formFile, string fileName, Dictionary<string, string> extractorHelper)
         {
-            var zipBytes = await _service.DivideFromFileWithoutTemplate(fileName, formFile, extractorHelper);
+            var zipBytes = await _service.DividePdfWithoutTemplate(fileName, formFile, extractorHelper);
+            return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
+        }
+
+        [HttpPost("/txt/without-template")]
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> DivideTxtWithoutTemplate(IFormFile formFile, string fileName, Dictionary<string, string> extractorHelper)
+        {
+            var zipBytes = await _service.DivideTxtWithoutTemplate(fileName, formFile, extractorHelper);
+            return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
+        }
+
+        [HttpPost("/txt/by-line")]
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> DivideTxtByLine(IFormFile formFile, int line)
+        {
+            var zipBytes = await _service.DivideTxtByLines(formFile, line);
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
         }
     }
