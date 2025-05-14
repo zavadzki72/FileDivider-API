@@ -1,4 +1,5 @@
-﻿using FileDivider.Api.Models;
+﻿using FileDivider.Api.Dtos;
+using FileDivider.Api.Models;
 using FileDivider.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,8 +34,10 @@ namespace FileDivider.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(PdfTemplate item)
+        public async Task<IActionResult> Post(PdfTemplateRequest request)
         {
+            var item = PdfTemplate.CreateFromDto(request);
+
             var validatiopn = item.IsValid();
             if (!validatiopn.Item1)
                 return BadRequest(validatiopn.Item2);
@@ -44,8 +47,10 @@ namespace FileDivider.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, PdfTemplate item)
+        public async Task<IActionResult> Put(Guid id, PdfTemplateRequest request)
         {
+            var item = PdfTemplate.CreateFromDto(request);
+
             await _service.Update(id, item);
             return NoContent();
         }

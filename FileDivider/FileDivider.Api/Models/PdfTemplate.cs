@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using FileDivider.Api.Dtos;
 
 namespace FileDivider.Api.Models
 {
@@ -27,6 +28,15 @@ namespace FileDivider.Api.Models
                 return (false, "O template precisa ter um helper de extração chamado 'Inicio'");
 
             return (true, string.Empty);
+        }
+
+        public static PdfTemplate CreateFromDto(PdfTemplateRequest request)
+        {
+            return new PdfTemplate
+            {
+                Name = request.Name,
+                ExtractionHelper = request.ExtractionHelpers
+            };
         }
     }
 
