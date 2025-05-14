@@ -1,4 +1,5 @@
-﻿using FileDivider.Api.Services;
+﻿using FileDivider.Api.Dtos;
+using FileDivider.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileDivider.Api.Controllers
@@ -19,17 +20,17 @@ namespace FileDivider.Api.Controllers
 
         [HttpPost("pdf/without-template")]
         [DisableRequestSizeLimit]
-        public async Task<IActionResult> DividePdfWithoutTemplate(IFormFile formFile, string fileName, Dictionary<string, string> extractorHelper)
+        public async Task<IActionResult> DividePdfWithoutTemplate([FromForm] FileDivisorWithoutTemplateRequest request)
         {
-            var zipBytes = await _service.DividePdfWithoutTemplate(fileName, formFile, extractorHelper);
+            var zipBytes = await _service.DividePdfWithoutTemplate(request.FileName, request.FormFile, request.ExtractorHelper);
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
         }
 
         [HttpPost("txt/without-template")]
         [DisableRequestSizeLimit]
-        public async Task<IActionResult> DivideTxtWithoutTemplate(IFormFile formFile, string fileName, Dictionary<string, string> extractorHelper)
+        public async Task<IActionResult> DivideTxtWithoutTemplate([FromForm] Dtos.FileDivisorWithoutTemplateRequest request)
         {
-            var zipBytes = await _service.DivideTxtWithoutTemplate(fileName, formFile, extractorHelper);
+            var zipBytes = await _service.DivideTxtWithoutTemplate(request.FileName, request.FormFile, request.ExtractorHelper);
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");
         }
 
