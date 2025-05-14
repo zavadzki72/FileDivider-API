@@ -28,7 +28,7 @@ namespace FileDivider.Api.Controllers
 
         [HttpPost("txt/without-template")]
         [DisableRequestSizeLimit]
-        public async Task<IActionResult> DivideTxtWithoutTemplate([FromForm] Dtos.FileDivisorWithoutTemplateRequest request)
+        public async Task<IActionResult> DivideTxtWithoutTemplate([FromForm] FileDivisorWithoutTemplateRequest request)
         {
             var zipBytes = await _service.DivideTxtWithoutTemplate(request.FileName, request.FormFile, request.ExtractorHelper);
             return File(zipBytes, "application/zip", $"FileDivider_{DateTime.Now:dd-MM-yyyy:HH:mm:ss}.zip");

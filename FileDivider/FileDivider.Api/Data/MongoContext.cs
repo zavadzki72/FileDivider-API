@@ -15,5 +15,6 @@ namespace FileDivider.Api.Data
         }
 
         public IMongoCollection<PdfTemplate> PdfTemplates => _database.GetCollection<PdfTemplate>("PdfTemplates");
+        public IMongoCollection<User> Users => _database.GetCollection<User>("Users");
     }
 }
